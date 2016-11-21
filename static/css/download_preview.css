@@ -1,0 +1,38 @@
+/*
+    Styles used into the public download page
+    (c) 2015 Skylable ltd.
+*/
+
+#dl_preview_header {
+    float: left;
+    width: 100%;
+    background: #fff;
+}
+
+#dl_sxweb_logo {
+    float: left;
+    margin: 0 10px 0 0;
+    padding: 10px;
+}
+
+.dl_valigned {
+    /* display: inline-block; */
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+.dl_floatright {
+    float: right;
+    margin: 5px 10px 0 0;
+}
+
+#dl_preview_lightbox {
+    position: fixed;
+    text-align: center;    
+}
+
+.dl_image_preview {
+    max-width:100%; 
+    max-height: 100%; 
+    vertical-align: middle;
+}

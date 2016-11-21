@@ -1,0 +1,9 @@
+*.pyc
+*.log
+
+.coverage
+.cache/
+
+/db.sqlite3
+
+/conf.yaml

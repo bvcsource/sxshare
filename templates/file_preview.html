@@ -1,0 +1,137 @@
+{% load staticfiles %}
+<div id="dl_preview_header">
+    <span id="dl_sxweb_logo">
+        <a href="http://www.skylable.com" onclick="window.open(this.href); return false;">
+            <img src="{% static 'img/logo_small.png' %}" width="42" height="28">
+        </a>
+    </span>
+    <span class="dl_valigned">
+        {% blocktrans with filename=file.filename %}
+            File: <b>{{ filename }}</b>
+        {% endblocktrans %}
+    </span>
+    <span class="dl_floatright">
+        <a href="{{ request.get_full_path }}?download" class="styled-button">{% trans "Download the file" %}</a>
+    </span>
+</div>
+
+
+{% with type=file.sxweb_type %}
+    {% if file.sxweb_type == 'image' %}
+        <div id="dl_preview_lightbox">
+            <img class="dl_image_preview" src="{{ request.get_full_path }}?download">
+        </div>
+        <script type="application/javascript">
+            $(document).ready(function(){
+                var ph = $('#dl_preview_header');
+                var lb = $('#dl_preview_lightbox');
+                $(lb).css({
+                    'top' : 20  + $(ph).height(),
+                    'width' : $(window).width() - 40,
+                    'height': $(window).height() - 80,
+                    'background' : 'transparent',
+                    'overflow' : 'hidden'
+                }).css({
+                    'left': (($(window).width() - $(lb).width()) / 2)
+                });
+                $(window).resize(function(event){
+                    $(lb).css({
+                        'top' : 20 + $(ph).height(),
+                        'width' : $(window).width() - 40,
+                        'height': $(window).height() - 80
+                    }).css({
+                        'left': (($(window).width() - $(lb).width()) / 2)
+                    })
+                });
+            });
+        </script>
+
+    {% elif file.sxweb_type == 'pdf' %}
+        <div id="dl_preview_lightbox"></div>
+        <script>
+            $(document).ready(function(){
+                var ph = $('#dl_preview_header');
+                var lb = $('#dl_preview_lightbox');
+                $(lb).css({
+                    'top' : 20  + $(ph).height(),
+                    'width' : $(window).width() - 40,
+                    'height': $(window).height() - 80,
+                    'background' : 'transparent',
+                    'overflow' : 'hidden'
+                }).css({
+                    'left': (($(window).width() - $(lb).width()) / 2)
+                });
+                $('<iframe id="preview-pdf"></iframe>')
+                    .attr('src', '{% static 'pdfjs/web/viewer.html' %}?file='+encodeURIComponent('{{ request.get_full_path }}?download') + '&_c=' + Math.random())
+                    .css('width', '100%')
+                    .appendTo(lb);
+                $('#preview-pdf').css('height', '100%' );
+                $(window).resize(function(event){
+                    $(lb).css({
+                        'top' : 20 + $(ph).height(),
+                        'width' : $(window).width() - 40,
+                        'height': $(window).height() - 80
+                    }).css({
+                        'left': (($(window).width() - $(lb).width()) / 2)
+                    })
+                });
+            });
+        </script>
+
+    {% elif file.sxweb_type == 'source' or file.sxweb_type == 'text' %}
+        <div id="dl_preview_lightbox"></div>
+        <script type="application/javascript">
+            $(document).ready(function(){
+                $.ajax({
+                    url : '{{ request.get_full_path }}?download',
+                    cache : false,
+                    success: function(data, status, xhr) {
+                        var ph = $('#dl_preview_header');
+                        var lb = $('#dl_preview_lightbox');
+                        $(lb).css({
+                            'top' : 20  + $(ph).height(),
+                            'width' : $(window).width() - 40,
+                            'height': $(window).height() - 80,
+                            'background' : 'transparent',
+                            'overflow' : 'hidden'
+                        }).css({
+                            'left': (($(window).width() - $(lb).width()) / 2)
+                        });
+                        $.getScript('/.sxshare/static/js/run_prettify.js');
+                        $('<pre class="prettyprint" id="preview-source"></pre>')
+                            .css('width','100%')
+                            .css('background', '#fff')
+                            .appendTo(lb);
+                        $('#preview-source').html( data.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') );
+                        $(lb).css({
+                            'background': '#fff',
+                            'overflow' : 'auto',
+                            'text-align' : 'left',
+                            'vertical-align' : 'top'
+                        });
+                        $(window).resize(function(event){
+                            $(lb).css({
+                                'top' : 20 + $(ph).height(),
+                                'width' : $(window).width() - 40,
+                                'height': $(window).height() - 80
+                            }).css({
+                                'left': (($(window).width() - $(lb).width()) / 2)
+                            })
+                        });
+                    },
+                    error : function (xhr, status) {
+                        window.alert('{% trans "An error occurred, failed to retrieve the file" %}');
+                    }
+                });
+            });
+        </script>
+    {% endif %}
+{% endwith %}
+
+                <script src="{% static 'js/jquery.smartbanner.js' %}"></script>
+<script type="text/javascript">
+    $.smartbanner({
+        title : "SXDrive",
+        author : "Skylable Ltd"
+    });
+</script>

@@ -1,0 +1,158 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-03 16:43+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#: sxshare/forms.py:142
+msgid "Invalid password!"
+msgstr "Niepoprawne hasło!"
+
+#: sxshare/settings.py:158
+msgid "English"
+msgstr "angielski"
+
+#: sxshare/settings.py:159
+msgid "German"
+msgstr "niemiecki"
+
+#: sxshare/settings.py:160
+msgid "Italian"
+msgstr "włoski"
+
+#: sxshare/settings.py:161
+msgid "Polish"
+msgstr "polski"
+
+#: templates/_paginator.html:6 templates/_paginator.html.py:14
+msgid "First"
+msgstr "Pierwsza"
+
+#: templates/_paginator.html:10 templates/_paginator.html.py:18
+msgid "Previous"
+msgstr "Poprzednia"
+
+#: templates/_paginator.html:32 templates/_paginator.html.py:40
+msgid "Next"
+msgstr "Następna"
+
+#: templates/_paginator.html:36 templates/_paginator.html.py:44
+msgid "Last"
+msgstr "Ostatnia"
+
+#: templates/_password_input.html:1
+msgid "Password"
+msgstr "Hasło"
+
+#: templates/dir.html:46
+#, python-format
+msgid ""
+"\n"
+"                    Files in <b>%(path)s</b>\n"
+"                "
+msgstr ""
+"\n"
+"                    Pliki w folderze <b>%(path)s</b>\n"
+"                "
+
+#: templates/dir.html:52
+msgid "Name"
+msgstr "Nazwa"
+
+#: templates/dir.html:55
+msgid "Size"
+msgstr "Rozmiar"
+
+#: templates/dir.html:58
+msgid "Date"
+msgstr "Data"
+
+#: templates/dir.html:68
+msgid "Parent directory"
+msgstr "Katalog nadrzędny"
+
+#: templates/dir.html:100
+msgid "Download"
+msgstr "Pobierz"
+
+#: templates/dir.html:114
+#, python-format
+msgid ""
+"\n"
+"                    Please enter the password to browse the directory: <b>"
+"%(filename)s</b>\n"
+"                "
+msgstr ""
+"\n"
+"                    Proszę podać hasło aby przeglądać folder <b>"
+"%(filename)s</b>\n"
+"                "
+
+#: templates/dir.html:122
+msgid "Submit"
+msgstr "Wyślij"
+
+#: templates/file.html:8
+#, python-format
+msgid ""
+"\n"
+"                    Start downloading file: <b>%(filename)s</b>?\n"
+"                "
+msgstr ""
+"\n"
+"                    Rozpocząć pobieranie pliku <b>%(filename)s</b>?\n"
+"                "
+
+#: templates/file.html:14
+#, python-format
+msgid ""
+"\n"
+"                    Please enter the password to download the file: <b>"
+"%(filename)s</b>\n"
+"                "
+msgstr ""
+"\n"
+"                    Proszę podać hasło aby pobrać plik <b>%(filename)s</b>\n"
+"                "
+
+#: templates/file.html:22
+msgid "Download now!"
+msgstr "Pobierz teraz!"
+
+#: templates/file_missing.html:4
+msgid "File not found or expired."
+msgstr "Plik nie istnieje lub ważność linku wygasła."
+
+#: templates/file_preview.html:9
+#, python-format
+msgid ""
+"\n"
+"            File: <b>%(filename)s</b>\n"
+"        "
+msgstr ""
+"\n"
+"            Plik: <b>%(filename)s</b>\n"
+"        "
+
+#: templates/file_preview.html:14
+msgid "Download the file"
+msgstr "Pobierz plik"
+
+#: templates/file_preview.html:123
+msgid "An error occurred, failed to retrieve the file"
+msgstr "Przy pobieraniu pliku wystąpił błąd"

@@ -1,0 +1,235 @@
+/*
+ Markup:
+
+  <div class="dialog-box"> 
+    <div class="dialog-box-logo">
+      <span class="dialog-box-logo-icon ir"></span><h1>Title</h1>
+    </div>
+    <div class="dialog-box-body">
+      <p>Lorem ipsum, bla bla bla...</p>
+      <p>Lorem ipsum, bla bla bla...</p>
+      
+      <div class="dialog-box-buttons">
+	<a class="button" href="/remove/account?remove=yes">Yes</a>
+	<a class="button" href="/account_settings" >No</a>
+      </div>
+    </div>
+    
+</div>
+*/
+
+.dialog-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 460px;
+    margin: -152px 0 0 -230px
+}
+
+
+.dialog-box .success {
+    float: left;
+    background: #12b01c;
+    color: #fff;
+    border-radius: 3px;
+    position: relative;
+    margin-top: 5px;
+}
+
+.dialog-box .failure {
+    float: left;
+    background: #ff6961 !important;
+    color: #fff;
+    border-radius: 3px;
+    position: relative;
+    margin-top: 5px;
+}
+
+.dialog-box .info {
+    float: left;
+    background: #1475C5;
+    color: #fff;
+    border-radius: 3px;
+    position: relative;
+    margin-top: 5px;
+}
+
+.dialog-box-logo {
+    width: 400px;
+    
+    padding: 22px 30px;
+    color: #3c3c3c;
+    background: #fff;
+    border-radius: 5px 5px 0 0;
+    
+    float: left;
+}
+
+.dialog-box-logo .dialog-box-logo-icon {
+    float: left;
+    background-position: 0 -720px;
+    height: 40px;
+    width: 140px
+}
+
+.dialog-box-logo h1 {
+    float: right;
+    font-weight: 300;
+    color: #3c3c3c;
+    font-size: 20px;
+    margin-top: 5px;
+    width: 230px;
+    text-align: right;
+}
+
+.dialog-box-body {
+    width: 400px;
+    padding: 30px;
+    border-bottom: 3px solid #3a3d46 !important;
+    background: #e5e5e5;
+    border-radius: 0 0 5px 5px;
+    
+    float: left;
+    
+}
+
+.dialog-box-body input[type=email], .dialog-box-body input[type=password], .dialog-box-body input[type=text] {
+    width: 92%;
+    padding: 3% 4%;
+    border: 1px solid #fff;
+    border-top: 1px solid #c7c7c7;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.dialog-box-body input[type=email]:focus, .dialog-box-body input[type=password]:focus, .dialog-box-body input[type=text]:focus {
+    border: 1px solid #1575c5
+}
+
+.dialog-box-body input[type=submit], .dialog-box-body button, .dialog-box-body input[type=button]  {
+    background: #1575c5;
+    color: #fff;
+    border: none;
+    padding: 3% 5%;
+    border-radius: 3px;
+    
+    float: right;
+}
+
+.dialog-box-body input[type=submit]:hover, .dialog-box-body button:hover, .dialog-box-body input[type=button]:hover {
+    background: #0d548f
+}
+
+.dialog-box-body input[type=checkbox] {
+    margin: -2px 10px 0 -2px;
+}
+
+.dialog-box-body label {
+    font-size: 12px;
+    color: #3c3c3c;
+    margin-top: 5px;
+    display: inline-block
+}
+
+.dialog-box-buttons {
+    padding: 10px 10px 10px 0;
+    float: left;
+    width: 100%;
+}
+
+.dialog-box-buttons .styled-button {
+  float: right;
+  padding: 10px;
+}
+
+.dialog-box-buttons a {
+    padding: 3% 0;
+    margin: 5px 10px 0 0;
+    float: left;
+}
+
+.dialog-box-buttons input[type=submit], .dialog-box-body button, .dialog-box-body input[type=button] {
+    float: right;
+    margin-left: 10px;
+}
+
+.dialog-box-utils {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.dialog-box-utils a {
+    color: #8b91a0;
+    text-decoration: none;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.dialog-box-utils a:hover {
+    color: #fff;
+    text-decoration: underline
+}
+
+.dialog-box-utils a:first-child {
+    float: left;
+}
+
+.dialog-box-utils a:last-child {
+    float: right;
+}
+
+.dialog-box .dialog-box-fixed-footer {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    text-align: right;
+    color: #8b91a0;
+}
+
+.dialog-box .dialog-box-fixed-footer a, .dialog-box .dialog-box-fixed-footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 480px), only screen and (max-height: 530px) {
+
+     .dialog-box {
+        width: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0
+    }
+
+    .dialog-box-logo {
+        width: 90%;
+        padding: 5%;
+        border-radius: 0px
+    }
+
+    .dialog-box-body {
+        width: 90%;
+        padding: 5%;
+        border-radius: 0;
+    }
+
+    .dialog-box-body input[type=submit], .dialog-box-body button, .dialog-box-body input[type=button] {
+        bottom: 0;
+        float: right;
+        padding: 3% 5%;
+        position: inherit;
+        right: 0;
+    }
+
+    .dialog-box .dialog-box-fixed-footer {
+        position: inherit;
+        float: left;
+        width: 100%;
+        right: auto;
+        bottom: auto;
+        margin: 30px 0 0 0;
+    }
+    
+}

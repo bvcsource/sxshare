@@ -1,0 +1,49 @@
+<div class="paginator">
+    {% if page.has_other_pages %}
+
+    {% if page.has_previous %}
+        <a href="?page=1" class="styled-button">
+            {% trans "First" %}
+        </a>
+        <a href="?page={{ page.previous_page_number }}" class="styled-button">
+            <span class="fa fa-angle-left"></span>
+            {% trans "Previous" %}
+        </a>
+    {% else %}
+        <span class="styled-button-disabled">
+            {% trans "First" %}
+        </span>
+        <span class="styled-button-disabled">
+                <span class="fa fa-angle-left"></span>
+            {% trans "Previous" %}
+        </span>
+    {% endif %}
+
+    {% for p in page_range %}
+        {% if p == page.number %}
+            <span class="styled-button-disabled">{{ p }}</span>
+        {% else %}
+            <a href="?page={{ p }}">{{ p }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}" class="styled-button">
+            {% trans "Next" %}
+                <span class="fa fa-angle-right"></span>
+        </a>
+        <a href="?page={{ page.paginator.num_pages }}" class="styled-button">
+            {% trans "Last" %}
+        </a>
+    {% else %}
+        <span class="styled-button-disabled">
+            {% trans "Next" %}
+            <span class="fa fa-angle-right"></span>
+        </span>
+        <span class="styled-button-disabled">
+            {% trans "Last" %}
+        </span>
+    {% endif %}
+
+    {% endif %}
+</div>

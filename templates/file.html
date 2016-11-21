@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <form id="download_form" action="{{ request.get_full_path }}" method="POST">
+        {% csrf_token %}
+        {% if is_authenticated %}
+            <p>
+                {% blocktrans with filename=file.filename %}
+                    Start downloading file: <b>{{ filename }}</b>?
+                {% endblocktrans %}
+            </p>
+        {% else %}
+            <p>
+                {% blocktrans with filename=file.filename %}
+                    Please enter the password to download the file: <b>{{ filename }}</b>
+                {% endblocktrans %}
+            </p>
+            {% include '_password_input.html' %}
+        {% endif %}
+
+        <div class="dialog-box-buttons">
+            <input id="download_start" type="submit" value="{% trans "Download now!" %}">
+        </div>
+    </form>
+{% endblock main %}

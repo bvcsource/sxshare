@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load sxshare sizefieldtags %}
+
+{% block head %}
+<style>
+     {% if is_authenticated %}
+     .current-dir {
+         padding: 0 2%;
+     }
+     .table-title {
+         padding: 0 1%;
+     }
+     .dialog-box-body {
+         background: #fff;
+         padding: 0;
+         overflow: hidden; {# for round edges #}
+     }
+     @media only screen and (min-width: 481px), only screen and (min-height: 531px) {
+        .dialog-box {
+            position: static;
+            width: 52em;
+            max-width: 100%;
+            margin: 100px auto;
+        }
+        .dialog-box-logo:after {
+            {# clearfix #}
+            clear: both;
+            display: block;
+            content: ' ';
+        }
+        .dialog-box-logo {
+            float: none;
+        }
+        .date {
+            width: 23%; {# 1% less because it wont fit otherwise #}
+        }
+     }
+     {% endif %}
+ </style>
+{% endblock head %}
+
+{% block main %}
+    <form id="download_form" action="{{ request.get_full_path }}" method="POST">
+        {% if is_authenticated %}
+            <p class="current-dir">
+                {% blocktrans with path=path %}
+                    Files in <b>{{ path }}</b>
+                {% endblocktrans %}
+            </p>
+            <p class="table-title">
+                <span class="name">
+                    {% trans "Name" %}
+                </span>
+                <span class="size">
+                    {% trans "Size" %}
+                </span>
+                <span class="date">
+                    {% trans "Date" %}
+                </span>
+            </p>
+
+            <ol id="selectable" class="file-list">
+                {% if is_subdir %}
+                    <li class="ui-widget-content">
+                        <span class="name">
+                            <span class="ir icon-folder-parent"></span>
+                            <a href="..">
+                                {% trans "Parent directory" %}
+                            </a>
+                        </span>
+                    </li>
+                {% endif %}
+                {% for file in page %}
+                <li class="ui-widget-content">
+                    {% if file.is_dir %}
+                        <span class="name">
+                            {{ file | icon }}
+                            <a href="{{ file | urlencode }}">
+                                {{ file }}
+                            </a>
+                        </span>
+                    {% else %}
+                        <span class="name">
+                            {{ file | icon }}
+                            <a href="{{ file | urlencode }}"
+                                    {% if file.sxweb_type %}
+                                        class="elmpreview"
+                                        data-filetype="{{ file.sxweb_type }}"
+                                    {% endif %}>
+                                {{ file }}
+                            </a>
+                        </span>
+                        <span class="size">{{ file.size | filesize }}</span>
+                        <span class="date">{{ file.creation_date }}</span>
+                        <a class="ir actions-trigger"></a>
+                        <ul class="actions">
+                            <li>
+                                <a href="{{ file | urlencode }}">
+                                    <span class="fa fa-download"></span>
+                                    {% trans "Download" %}
+                                </a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ol>
+
+            {% include '_paginator.html' %}
+        </div>
+
+        {% else %}
+            <p>
+                {% blocktrans with filename=file.filename %}
+                    Please enter the password to browse the directory: <b>{{ filename }}</b>
+                {% endblocktrans %}
+            </p>
+
+            {% include '_password_input.html' %}
+
+            <div class="dialog-box-buttons">
+                <input id="download_start" type="submit" value="{% trans "Submit" %}">
+            </div>
+            {% csrf_token %}
+        {% endif %}
+    </form>
+{% endblock main %}

@@ -1,0 +1,64 @@
+# Comment out the following line before use
+Edit-me-first
+# (optional) current skin.
+# skin:
+server:
+    # Server configuration
+    # sx hostname or a list of hostnames, e.g.
+    #     sx.example.com
+    # or
+    #     - sx1.example.com
+    #     - sx2.example.com
+    #     - 127.0.0.1
+    hosts:
+app:
+# app settings
+    # (optional) e-mail, or a list of e-mails, to which server error
+    # tracebacks will be sent.
+    # report_to: admin-logs@skylable.com
+mailing:
+# smtp settings
+    # The host to use for sending email
+    host:
+    # (optional) The port to use for the SMTP server
+    # port:
+    # (optional) Username for the SMTP server
+    # user:
+    # (optional) Password for the SMTP server
+    # password:
+    # (optional) Whether to use SSL connection
+    # ssl:
+    # (optional) Whether to use TLS connection
+    # tls:
+    # The e-mail address which will be used as the sender
+    from:
+    # options for the download notification emails
+    notifications:
+        # Subject of the notification emails
+        email_subject:
+        # (optional) Path to a file with initial email content
+        # email_head_file:
+        # (optional) Path to a file with closing email content
+        # email_tail_file:
+sx:
+# Cluster connection parameters
+    # SX Cluster name. will be used as host if ip_address is omitted
+    cluster:
+    # (optional) ip address (or a list of ip addresses) of the cluster
+    # ip_addresses:
+    # (optional) toggle ssl. default is true
+    # is_secure:
+    # (optional) specifies a custom connection port
+    # port:
+
+    # SX admin user authentication - either is required:
+    # base64-encoded user key
+    admin_key:
+    # path to a file with encoded user key
+    # admin_key_path:
+
+    # Extra configuration parameters
+    # (optional) toggle ssl certificate validation. default is true
+    # verify_ca:
+    # (optional) path to a custom certificate. implies verify_ca
+    # certificate:

@@ -1,0 +1,16 @@
+Required stuff
+    Python: python2.7, pip
+
+Install the dependencies
+    $ pip install -r requirements.txt
+
+Generate translation files
+    $ ./manage.py compilemessages
+
+Configure connection to the sx cluster
+    $ mv conf_example.yaml conf.yaml
+    $ $EDITOR conf.yaml
+
+Also, add cron jobs for:
+    ./manage.py delete_expired_links
+    ./manage.py send_notifications

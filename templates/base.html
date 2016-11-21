@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% get_current_language as lang %}
+<html lang="{{ lang }}">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <meta name="description" content="SXWeb is a browser-based solution to access the data stored in your SX cluster through a user-friendly web interface.">
+        <meta name="keywords" content="sxweb, file sync and share, self hosted, sxdrive web">
+        <meta name="apple-itunes-app" content="app-id=943260973">
+        <meta name="google-play-app" content="app-id=com.skylable.sx">
+        <meta name="generator" content="SXShare @{{ VERSION }}">
+
+        <title>SXWeb - File sync and share</title>
+
+        {% load staticfiles %}
+        <link rel="icon" href="{% static 'img/favicon.ico' %}">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700&subset=latin,latin-ext">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/pagedialog.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/download_preview.css' %}">
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/jquery-ui.js' %}"></script>
+        <script src="/.sxshare/static/js/lang/lang.{{ lang }}.js"></script>
+        <script src="{% static 'js/flashmessenger.js' %}"></script>
+        <script src="{% static 'js/utils.js' %}"></script>
+        <script src="{% static 'js/file_operations.js' %}"></script>
+        {% block head %}{% endblock %}
+
+    </head>
+
+    <body id="login">
+        {% if file.sxweb_type and is_authenticated %}
+            {% include 'file_preview.html' %}
+        {% else %}
+            <div class="dialog-box">
+                <div class="dialog-box-logo">
+                    <a href="http://www.skylable.com" onclick="window.open(this.href); return false;">
+                        <span class="dialog-box-logo-icon ir"></span>
+                    </a>
+                    <h1>
+                        SXWeb
+                    </h1>
+                </div>
+                <div class="dialog-box-body">
+                    {% block main %}{% endblock main %}
+                </div>
+            </div>
+        {% endif %}
+
+    </body>
+</html>

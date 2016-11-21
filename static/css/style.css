@@ -1,0 +1,34 @@
+/* Use a sane box model */
+* {
+    box-sizing: border-box;
+}
+
+/* Hide size and date fields on hover */
+#selectable li:hover .size,
+#selectable li:hover .date {
+    visibility: hidden;
+}
+
+/* fix issues caused by changing box model */
+.dialog-box-logo, .dialog-box-body,
+#selectable li ul.active, #selectable li:hover ul.active,
+.dialog-box-body input[type="password"] {
+    width: 100%;
+}
+
+/* remove forced scroll */
+html {
+    overflow: initial !important;
+}
+
+#selectable {
+    margin-top: 0;
+    overflow: hidden;
+}
+
+/* mobile */
+@media only screen and (max-width: 480px), only screen and (max-height: 530px) {
+    .dialog-box-body {
+        border-bottom: 0 !important; /* hide 'shadow' effect */
+    }
+}

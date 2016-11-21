@@ -1,0 +1,11 @@
+-r requirements.txt
+
+virtualenvwrapper==4.7.1
+
+flake8==2.4.1
+ipython==4.0.0
+ipdb==0.8.1
+
+pytest==2.8.3
+pytest-django==2.9.1
+pytest-cov==2.2.0
