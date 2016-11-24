@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags-->
+    <title>SXShare - File & directory sharing for Skylable SX</title>
+    <!-- Bootstrap-->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery-form.js"></script>
+    <script src="assets/js/contact-us.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/spin.js"></script>
+    <script src="assets/js/ladda.js"></script>
+    <script src="assets/js/highlight.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/animate.css" rel="stylesheet">
+    <link href="assets/css/tomorrow.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--if lt IE 9
+    script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
+    script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+    -->
+  </head>
+  <body>
+    <div class="header">
+      <section class="home-main-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 page-header">
+              <h1>SXShare</h1>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="section-cloud section-white">
+      <div class="container">
+        <div class="row">
+          <div class="flex-box flex-box--header">
+            <div class="col-md-12">
+              <h3>Introduction</h3>
+              <p>SX Share lets you generate a unique link to a file or a directory on your SX cluster. Simply call its API, and you'll receive a link you can send to your friends or coworkers. Optionally, you can protect the link with a password.</p>
+            </div>
+            <div class="col-md-6 text-center"><img src="assets/img/sxshare-image.svg" class="company-img"></div>
+          </div>
+        </div>
+      </div><img src="assets/img/divider.svg" class="section-divider hidden-sm hidden-xs">
+    </section>
+    <section class="section-gray section-cloud section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-left">
+            <h3 class="btm-margin-5 text-center">SXShare API</h3>
+            <h4>Sharing files</h4>
+            <p>To share a file via sxshare, send a POST request to .sxshare/api/share/.</p>
+            <h4>Request data:</h4>
+            <ul>
+              <li>access_key: base64-encoded SX user key for authentication</li>
+              <li>path: full path to the shared file, including volume</li>
+              <li>[expire_time]: Number of seconds, after which the shared file will expire.</li>
+              <li>[password]: users will be asked for a password before thay can access the file.</li>
+              <li>[notify]: e-mail address which will receive e-mail notifications about downloads of the shared file.</li>
+            </ul>
+            <p>(note that expire_time, password and notify fields are optional)</p>
+            <h4>Response data:</h4>
+            <ul>
+              <li>status: if file was shared successfully, its value will be 'true'</li>
+              <li>publink: full link to the shared file</li>
+              <li>error: contains details about errors, if there were any</li>
+            </ul>
+            <p>example:</p>
+            <pre><code>$ curl -H 'Content-type: application/json' -X POST -d '{
+	"access_key": "s6HKVEMqGx...",
+	"path": "volume/bootstrap-3.3.6-dist/css/bootstrap.min.css",
+	"expire_time": "86400",
+	"password": "supersecret",
+	"notify": "user@example.com"
+}' http://localhost:8100/.sxshare/api/share/
+
+{"status": true, "publink": "http://localhost:8100/.sxshare/NKSUnDXzW0nQ/bootstrap.min.css/"}</code></pre>
+            <h4>Sharing directories</h4>
+            <p>Insert directory path in path key. Path to directory must end with a trailing slash.</p>
+            <p>example:</p>
+            <pre><code>$ curl -H 'Content-type: application/json' -X POST -d '{
+	"access_key": "s6HKVEMqGx...",
+	"path": "volume/bootstrap-3.3.6-dist/"
+}' http://localhost:8100/.sxshare/api/share/
+
+{"status": true, "publink": "http://localhost:8100/.sxshare/VZTeA5q3dqur/bootstrap-3.3.6-dist/"}</code></pre>
+            <h4>Invalid requests</h4>
+            <p>If sxshare api failed to share a file, it responds with status: false. Details on the error are contained in the error field.</p>
+            <p>(note that for compatibility with SXWeb, the response code is 200 instead of 400)</p>
+            <p>example:</p>
+            <pre><code>$ curl -H 'Content-type: application/json' -X POST -d '{
+	"access_key": "s6HKVEMqGx...",
+	"path": "volume/nonexistent/"
+}' http://localhost:8100/.sxshare/api/share/
+
+{"status": false, "error": "path: No such file: nonexistent/"}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
